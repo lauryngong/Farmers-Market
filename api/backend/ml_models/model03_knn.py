@@ -279,7 +279,7 @@ def predict(N, P, K, TYPE_OF_CROP, TEMPERATURE, SEASON, SOWN, HARVESTED,
     return prediction
 
 
-def get_observations_with_predictions(k=3):
+def get_observations_with_predictions(k=5):
     """
     Fetches the full crop dataset from the DB, runs leave-one-out-style
     KNN predictions (using all training rows), and returns the results.
