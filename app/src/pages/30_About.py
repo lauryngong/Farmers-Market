@@ -41,7 +41,7 @@ with r3:
     st.write("Short bio or description here.")
 
 with r4:
-    st.image("assets/headshots/minjuPhoto.jpg", width=150)
+    st.image("assets/headshots/minjuPhoto.jpg", width=250)
     st.markdown("**MINJU SUNG**")
     st.write("Hello, I'm a 3rd year Computer Science student with minor in Mathematics at Northeastern University. " \
     "When I'm not working on technical projects or exploring new data models, I enjoy hiking, reading, or competing as a member of Northeastern's Debate Society.")
