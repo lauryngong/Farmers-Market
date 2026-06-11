@@ -12,7 +12,7 @@ def home_nav():
 
 
 def about_page_nav():
-    st.sidebar.page_link("pages/30_About.py", label="About our Project", icon="🧠")
+    st.sidebar.page_link("pages/30_About.py", label="About Our Project", icon="🧠")
 
 
 # ---- Role: farmer ------------------------------------------------
@@ -24,7 +24,7 @@ def farmer_home():
     
 def farmer_info():
     st.sidebar.page_link(
-        "pages/02_Farm_Info.py", label="Youe Farm Management", icon="🏡"
+        "pages/02_Farm_Info.py", label="Your Farm Management", icon="🏡"
     )
     
 def crop_prediction():
