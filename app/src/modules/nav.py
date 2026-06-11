@@ -12,7 +12,7 @@ def home_nav():
 
 
 def about_page_nav():
-    st.sidebar.page_link("pages/30_About.py", label="About our Project", icon="🧠")
+    st.sidebar.page_link("pages/30_About.py", label="About Our Project", icon="🧠")
 
 
 # ---- Role: farmer ------------------------------------------------
@@ -24,7 +24,7 @@ def farmer_home():
     
 def farmer_info():
     st.sidebar.page_link(
-        "pages/02_Farm_Info.py", label="Farm Management", icon="🏡"
+        "pages/02_Farm_Info.py", label="Your Farm Management", icon="🏡"
     )
     
 def crop_prediction():
@@ -73,9 +73,6 @@ def policy_blog():
 
 def researcher_home():
     st.sidebar.page_link("pages/21_Researcher_Home.py", label="Home", icon="👨‍🔬")
-
-def researcher_dash():
-    st.sidebar.page_link("pages/22_Researcher_Dashboard.py", label="Dashboard", icon="📊")
 
 def researcher_map():
     st.sidebar.page_link("pages/23_Researcher_Map.py", label="Map", icon="🗺️")
@@ -151,7 +148,6 @@ def SideBarLinks(show_home=False):
 
         if st.session_state["role"] == "researcher":
             researcher_home()
-            researcher_dash()
             researcher_map()
             researcher_conditions()
             researcher_trends()

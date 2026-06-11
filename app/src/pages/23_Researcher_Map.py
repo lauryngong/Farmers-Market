@@ -33,13 +33,16 @@ def load_farm_history(farm_id: int) -> pd.DataFrame:
 
 # ── Color mapping ────────────────────────────────────────────────
 CROP_COLORS = {
-    "Cereals":      [29,  158, 117],
-    "Vegetables":   [127, 119, 221],
-    "Pulses":       [216,  90,  48],
-    "Oil seeds":    [186, 117,  23],
-    "Sugar crops":  [55,  138, 221],
-    "Millets":      [136, 135, 128],
-    "Root & tuber": [212,  83, 126],
+    "vegetables":      [29,  158, 117],
+    "sugar crops":     [127, 119, 221], 
+    "Root&tuber":      [216,  90,  48],   
+    "pulses":          [186, 117,  23], 
+    "oil seeds":       [55,  138, 221],
+    "millets":         [48,  131, 104], 
+    "fibre crop":      [212,  83, 126], 
+    "colecrops":       [230, 190,  50], 
+    "cereals":         [200,  80,  80],   
+    "bulbvegetables":  [100, 180, 100],   
 }
 WATER_COLORS = {
     "Irrigated": [29, 158, 117],
@@ -49,23 +52,29 @@ WATER_COLORS = {
 def assign_color(df: pd.DataFrame, color_by: str) -> pd.DataFrame:
     df = df.copy()
     
-    def no_data(row):
-        return row['record_count'] == 0 or pd.isna(row['avg_temp'])
-    
     if color_by == "Crop type":
-        df["color"] = df.apply(
-            lambda row: [128, 128, 128] if no_data(row) else CROP_COLORS.get(row['dominant_crop'], [136, 135, 128]),
-            axis=1
-        )
+        def get_crop_color(row):
+            # Only mark as no data if dominant_crop is actually missing
+            if pd.isna(row['dominant_crop']) or row['dominant_crop'] == '':
+                return [128, 128, 128]
+            return CROP_COLORS.get(row['dominant_crop'], [136, 135, 128])
+        
+        df["color"] = df.apply(get_crop_color, axis=1)
+        
     elif color_by == "Water source":
-        df["color"] = df.apply(
-            lambda row: [128, 128, 128] if no_data(row) else (WATER_COLORS["Irrigated"] if row['has_irrigated'] else WATER_COLORS["Rainfed"]),
-            axis=1
-        )
+        def get_water_color(row):
+            # Check if we have valid data for water source
+            if row['record_count'] == 0 or pd.isna(row['has_irrigated']):
+                return [128, 128, 128]
+            return WATER_COLORS["Irrigated"] if row['has_irrigated'] else WATER_COLORS["Rainfed"]
+        
+        df["color"] = df.apply(get_water_color, axis=1)
+        
     else:  # Temperature
         t_min, t_max = df["avg_temp"].min(), df["avg_temp"].max()
         def temp_to_color(row):
-            if no_data(row):
+            # Check if we have valid temperature data
+            if pd.isna(row['avg_temp']) or row['record_count'] == 0:
                 return [128, 128, 128]
             norm = (row['avg_temp'] - t_min) / max(t_max - t_min, 1)
             return [
@@ -74,6 +83,7 @@ def assign_color(df: pd.DataFrame, color_by: str) -> pd.DataFrame:
                 int(235 - (235 - 48)  * norm),
             ]
         df["color"] = df.apply(temp_to_color, axis=1)
+    
     return df
 
 

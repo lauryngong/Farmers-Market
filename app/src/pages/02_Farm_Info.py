@@ -56,29 +56,25 @@ def dialog_add_farm(user_id):
     farm_name = st.text_input("Farm name")
     st.markdown("**Location**")
     address = st.text_input("Address *", placeholder="e.g. Hauptstraße 5, Linz")
-    missing = []
-    if not address.strip():  missing.append("Address")
     country = st.selectbox(
-    "Country *",
-    ['Austria', 'Belgium', 'Bulgaria', 'Croatia',
-     'Cyprus', 'Czechia', 'Denmark', 'Estonia',
-     'Finland', 'France', 'Germany', 'Greece', 'Hungary',
-     'Ireland', 'Italy', 'Latvia', 'Lithuania',
-     'Luxembourg', 'Malta', 'Netherlands', 'Poland',
-     'Portugal', 'Romania', 'Slovakia', 'Slovenia',
-     'Spain', 'Sweden'],
-    index=0
-)
-    if missing:
-        st.error(f"Please fill in: {', '.join(missing)}")
-    else:
-        with st.spinner("Finding your location..."):
+        "Country *",
+        ['Austria', 'Belgium', 'Bulgaria', 'Croatia',
+         'Cyprus', 'Czechia', 'Denmark', 'Estonia',
+         'Finland', 'France', 'Germany', 'Greece', 'Hungary',
+         'Ireland', 'Italy', 'Latvia', 'Lithuania',
+         'Luxembourg', 'Malta', 'Netherlands', 'Poland',
+         'Portugal', 'Romania', 'Slovakia', 'Slovenia',
+         'Spain', 'Sweden'],
+        index=0
+    )
+
+    with st.spinner("Finding your location..."):
             try:
                 geolocator = Nominatim(user_agent="farmcast")
                 location = geolocator.geocode(f"{address}, {country}")
 
                 if location is None:
-                    st.error("Could not find that address. Try being more specific — include street, town and country.")
+                    st.error("Could not find that address. Try being less specific — include street and town.")
                 else:
                     lat = location.latitude
                     lon = location.longitude
@@ -94,6 +90,10 @@ def dialog_add_farm(user_id):
             if not farm_name.strip():
                 st.warning("Farm name is required.")
                 return
+            if not address.strip():
+                st.warning("Address is required.")
+                return
+            
             payload = {
                 "farm_name":  farm_name.strip(),
                 "user_id":    user_id,
@@ -109,6 +109,8 @@ def dialog_add_farm(user_id):
                 st.rerun()
             else:
                 st.error(f"Failed to create farm: {r.text}")
+        
+        
     with col2:
         if st.button("Cancel", use_container_width=True):
             st.rerun()
@@ -151,7 +153,7 @@ def dialog_edit_farm(farm):
                         location = geolocator.geocode(f"{address}, {country}")
 
                         if location is None:
-                            st.error("Could not find that address. Try being more specific — include street, town and country.")
+                            st.error("Could not find that address. Try being less specific — try just street and city.")
                         else:
                             lat = location.latitude
                             lon = location.longitude

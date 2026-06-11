@@ -12,7 +12,7 @@ SideBarLinks()
 st.title(f"Welcome Farmer, {st.session_state['first_name']}.")
 st.write('### What would you like to do today?')
 
-if st.button('View Farm Management',
+if st.button('View Your Farm Management',
              type='primary',
              use_container_width=True):
     st.switch_page('pages/02_Farm_Info.py')

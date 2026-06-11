@@ -12,11 +12,6 @@ SideBarLinks()
 st.title(f"Welcome Researcher, {st.session_state['first_name']}.")
 st.write('### What would you like to do today?')
 
-if st.button('View Dashboard',
-             type='primary',
-             use_container_width=True):
-    st.switch_page('pages/22_Researcher_Dashboard.py')
-
 if st.button('View Crop Map',
              type='primary',
              use_container_width=True):

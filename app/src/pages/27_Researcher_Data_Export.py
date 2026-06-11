@@ -41,20 +41,20 @@ filter_col1, filter_col2, filter_col3 = st.columns(3)
 with filter_col1:
     # by season
     seasons = sorted(df_raw["season"].dropna().unique().tolist())
-    selected_seasons = st.multiselect("Growing Season", seasons, default=seasons)
+    selected_seasons = st.multiselect("Growing Season", seasons, placeholder="Select one or more seasons")
 
     # by crop type
     crops = sorted(df_raw["type_of_crop"].dropna().unique().tolist())
-    selected_crops = st.multiselect("Crop Type", crops, default=crops)
+    selected_crops = st.multiselect("Crop Type", crops, placeholder="Select one or more crops")
 
 with filter_col2:
     # by water source
     water_sources = sorted(df_raw["water_source"].dropna().unique().tolist())
-    selected_water = st.multiselect("Water Source", water_sources, default=water_sources)
+    selected_water = st.multiselect("Water Source", water_sources, placeholder="Select water sources")
 
     # by farm_id
     farm_ids = sorted(df_raw["farm_id"].dropna().unique().tolist())
-    selected_farms = st.multiselect("Farm ID", farm_ids, default=farm_ids)
+    selected_farms = st.multiselect("Farm ID", farm_ids, placeholder="Select one or more farm IDs")
 
 with filter_col3:
     # date range based on sown

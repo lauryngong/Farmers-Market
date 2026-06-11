@@ -36,9 +36,9 @@ with r2:
 r3, r4= st.columns(2)
 
 with r3:
-   # st.image("assets/team3.png", width=150)
+    st.image("assets/headshots/elise.jpeg", width=300)
     st.markdown("**ELISE WIZEMANN**")
-    st.write("Short bio or description here.")
+    st.write("Hello, I'm Elise, a rising second year who is majoring in Cybersecurity and minoring in Criminal Justice. I learned a lot about databases and MySQL during this dialogue, and I'm hoping to relate this to database security! Outside of academics I enjoy sewing and running.")
 
 with r4:
     st.image("assets/headshots/minjuPhoto.jpg", width=250)
