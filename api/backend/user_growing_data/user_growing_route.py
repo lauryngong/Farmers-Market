@@ -54,7 +54,7 @@ def get_data_by_farm_id(farm_id):
                 user_growing_data_id,
                 type_of_crop, season, sown, harvested,
                 DATEDIFF(harvested, sown) AS duration_days,
-                water_source, temp, relative_humidity
+                water_source, temp, relative_humidity, n, p, k
             FROM user_growing_data
             WHERE farm_id = %s
             ORDER BY sown DESC
