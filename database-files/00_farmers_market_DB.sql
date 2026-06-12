@@ -100,49 +100,10 @@ CREATE TABLE IF NOT EXISTS user_growing_data (
         ON UPDATE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS crop_price_model_coefficients (
-    crops_price_coe_id INT AUTO_INCREMENT PRIMARY KEY,
-    created_by VARCHAR(100) NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_by VARCHAR(100) DEFAULT NULL,
-    updated_at DATETIME DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS crop_health_model_coefficients (
-    crops_health_coe_id INT AUTO_INCREMENT PRIMARY KEY,
-    temperature FLOAT,
-    humidity FLOAT,
-    elevation FLOAT,
-    rainfall FLOAT,
-    created_by VARCHAR(100) NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_by VARCHAR(100) DEFAULT NULL,
-    updated_at DATETIME DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS saved_data (
-    saved_data_id INT AUTO_INCREMENT PRIMARY KEY,
-    saved_data TEXT,
-    created_by VARCHAR(100) NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_by VARCHAR(100) DEFAULT NULL,
-    updated_at DATETIME DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS saved_graphs (
-    saved_graph_id INT AUTO_INCREMENT PRIMARY KEY,
-    graph CHAR(64),
-    created_by VARCHAR(100) NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_by VARCHAR(100) DEFAULT NULL,
-    updated_at DATETIME DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-);
-
 CREATE TABLE IF NOT EXISTS saved_reports (
     saved_report_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
     texts TEXT,
-    graph BLOB,
     created_by VARCHAR(100) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_by VARCHAR(100) DEFAULT NULL,

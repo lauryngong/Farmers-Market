@@ -6,6 +6,10 @@ Farmers Market is a data-driven platform that helps farmers, researchers, and po
 
 The platform combines machine learning models, interactive visualizations, community discussion tools, and reporting features to transform complex agricultural data into actionable insights.
 
+### Project Goal
+
+Our goal is to help farmers, researchers, and policymakers make better agricultural decisions by combining environmental, agricultural, and economic data into a unified platform that promotes sustainability, productivity, and informed planning.
+
 ## Features
 
 ### Farmers
@@ -145,6 +149,18 @@ Developed as part of the Summer 2026 Belgium Dialogue of Civilizations program.
 - Nicole Stekol
 - Minju Sung
 
-## Project Goal
+## Major Team Member Contributions
 
-Our goal is to help farmers, researchers, and policymakers make better agricultural decisions by combining environmental, agricultural, and economic data into a unified platform that promotes sustainability, productivity, and informed planning.
+### Lauryn Gong
+
+### Elise Wizemann
+
+Most of my work was centered around the database and the researcher persona. I worked on mapping out the database through diagrams and then transferring them into SQL tables, and continiously updated them as the scope, details, and feasability of our website changed and through discussions with my group members. I also worked to produce most of the mock data related to the farmer persona (users, farms, user_growing_records).
+
+For the researcher persona I spent a lot of time developing their user stories and uses for this application, especially as our ML models began to shift from their original ideas. The feedback from my professors and team members helped me a lot through this process, and through this I was able to base this persona around lots of data visualization. I also worked on a good portion of the pages for this persona, including the map, data export, and some other pages that were deleted or replaced later on into our development process.
+
+### Nicole Stekol
+
+### Minju Sung
+
+## Want to learn more about our development process? Check out our [Blog!](https://lauryngong.github.io/Belgium-Politics/).
