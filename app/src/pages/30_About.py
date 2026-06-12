@@ -25,7 +25,7 @@ r1, r2= st.columns(2)
 with r1:
     st.image("assets/headshots/headshot.jpg", width=300)
     st.markdown("**NICOLE STEKOL**")
-    st.write("Short bio or description here.")
+    st.write("Hi! I'm Nicole, a rising second year Computer Science major at Northeastern University. This month in Belgium, I learned how to create machine learning models, as well as about government and politics in the European Union. I also enjoy traveling, dance, and reading!")
 
 with r2:
     st.image("assets/headshots/IMG_2392.JPG", width=200)
@@ -55,12 +55,12 @@ ds1, ds2, ds3 = st.columns(3)
 
 with ds1:
     st.markdown("#### 📊 Eurostat")
-    st.write("YOUR EUROSTAT DESCRIPTION HERE")
+    st.write("The crop price data used in FarmCast comes from Eurostat, the statistical office of the European Union. The dataset covers selling prices of agricultural products reported by EU member states on an annual basis. Prices are expressed in euros per 100kg and reflect the average prices received by farmers at the point of first sale. The data spans 2015 to 2024 across 25 EU member states, providing a decade of price history that forms the foundation of Farmers Market's price prediction model.")
     st.markdown("[eurostat.ec.europa.eu](https://ec.europa.eu/eurostat)")
 
 with ds2:
     st.markdown("#### 🌤 Open-Meteo")
-    st.write("YOUR OPEN-METEO DESCRIPTION HERE")
+    st.write("The weather data used in FarmCast comes from Open-Meteo, a free and open-source weather API that provides historical climate data. For each country in the dataset, Farmers Market fetches annual mean temperature and total annual precipitation for the years 2015 to 2024, using the geographic coordinates of each country's approximate centre. These weather features are used alongside historical crop prices to train and run Farmers Market's price prediction model.")
     st.markdown("[open-meteo.com](https://open-meteo.com)")
 
 with ds3:
