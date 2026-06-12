@@ -98,7 +98,7 @@ def create_farm():
         return error_response("Failed to create farm", 500)
 
 
-# PUT: update a farm's name
+# PUT: update a farm
 @farms_bp.route("/farm_id/<int:farm_id>", methods=["PUT"])
 def update_farm(farm_id):
     current_app.logger.info(f'PUT /farms/farm_id/{farm_id}')
@@ -117,7 +117,7 @@ def update_farm(farm_id):
             SET farm_name = %s, longitude =s%, latitude = s%, 
             country = s%, updated_by = %s
             WHERE farm_id = %s
-        """, (data["farm_name"], data["longitude"], data["latitude"], data["country"], ["updated_by"], farm_id))
+        """, (data["farm_name"], data["longitude"], data["latitude"], data["country"], data["updated_by"], farm_id))
         conn.commit()
         if cur.rowcount == 0:
             cur.close()
