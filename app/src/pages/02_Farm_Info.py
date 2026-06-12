@@ -195,7 +195,7 @@ def dialog_edit_farm(farm):
                             payload = {
                                 "farm_name": new_name.strip(),
                                 "user_id": int(user_id),
-                                "created_by": int(user_id),
+                                "updated_by": int(user_id),
                                 "longitude": lon,
                                 "latitude": lat,
                                 "country": country,
