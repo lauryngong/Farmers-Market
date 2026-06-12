@@ -57,23 +57,22 @@ with filter_col2:
     selected_farms = st.multiselect("Farm ID", farm_ids, placeholder="Select one or more farm IDs")
 
 with filter_col3:
-    # date range based on sown
-    min_date = df_raw["sown"].min().date()
-    max_date = df_raw["sown"].max().date()
-    date_from = st.date_input("Sown From", value=min_date, min_value=min_date, max_value=max_date)
-    date_to   = st.date_input("Sown To",   value=max_date, min_value=min_date, max_value=max_date)
-
     # columns to export
     all_columns = df_raw.columns.tolist()
     selected_columns = st.multiselect("Columns to Export", all_columns, default=all_columns)
 
 # apply filters
+
 df = df_raw.copy()
-df = df[df["season"].isin(selected_seasons)]
-df = df[df["type_of_crop"].isin(selected_crops)]
-df = df[df["water_source"].isin(selected_water)]
-df = df[df["farm_id"].isin(selected_farms)]
-df = df[df["sown"].dt.date.between(date_from, date_to)]
+
+if selected_seasons:
+    df = df[df["season"].isin(selected_seasons)]
+if selected_crops:
+    df = df[df["type_of_crop"].isin(selected_crops)]
+if selected_water:
+    df = df[df["water_source"].isin(selected_water)]
+if selected_farms:
+    df = df[df["farm_id"].isin(selected_farms)]
 
 if selected_columns:
     df = df[[c for c in selected_columns if c in df.columns]]
