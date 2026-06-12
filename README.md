@@ -153,6 +153,10 @@ Developed as part of the Summer 2026 Belgium Dialogue of Civilizations program.
 
 ### Lauryn Gong
 
+Throughout the project, I contributed to both the planning and development of the application. Early on, I helped refine user personas and user stories, particularly for the policy maker persona, and worked on wireframes, ER diagrams, and relational models. I also helped ensure that the different personas had distinct goals and functionality with CRUD objectives while supporting the overall design of the application.
+
+My primary technical contributions focused on frontend development using Streamlit. I designed and implemented pages among the three personas, with a particular emphasis on policy maker features such as maps, reports, and prediction pages. I also worked on connecting frontend components to REST API routes and machine learning functionality. In addition, I developed features for the discussion board, including likes/dislikes (reactions), integrated them with the database and API, and created mock posts, comments, and reactions for testing and development. Throughout the project, I incorporated feedback from presentations, testing activities, and team discussions to improve the functionality and usability of the application.
+
 ### Elise Wizemann
 
 Most of my work was centered around the database and the researcher persona. I worked on mapping out the database through diagrams and then transferring them into SQL tables, and continiously updated them as the scope, details, and feasability of our website changed and through discussions with my group members. I also worked to produce most of the mock data related to the farmer persona (users, farms, user_growing_records).
