@@ -115,7 +115,15 @@ with tab1:
             with m1:
                 st.metric(label='Crop Category', value=type_of_crop)
             with m2:
-                st.metric(label='Season', value=season)
+                lbl=season
+                if lbl =='Kharif': 
+                    lbl= 'Monsoon (Kharif)'
+                elif lbl =='Zaid': 
+                    lbl= 'Summer (Zaid)'
+                else:
+                    lbl= 'Winter (Rabi)'
+
+                st.metric(label='Season', value=lbl)
 
             st.write('### Recommended crops (most likely first)')
             for rank, crop in enumerate(preds, start=1):

@@ -19,7 +19,7 @@ def get_farm(farm_id):
                 f.country,
                 f.latitude,
                 f.longitude,
-                f.created_at
+                f.created_at,
             FROM farms f
             LEFT JOIN users u ON f.user_id = u.user_id
             WHERE f.farm_id = %s
