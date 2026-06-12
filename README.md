@@ -167,4 +167,8 @@ For the researcher persona I spent a lot of time developing their user stories a
 
 ### Minju Sung
 
+In the early stages of the project, I helped develop the user personas that shaped the goals and functionality of the application. From there, my main focus became the prediction portion, where I spent a lot of time finding the right models and datasets to use. I started with a crop health dataset, but found the data was messy, so I switched over to a crop indicator dataset that better fit our goals. I also iterated on the modeling approach several times, moving from KNN to logistic regression and back to KNN as I evaluated how each performed for our use case.
+
+On the development side, I contributed to both the frontend and the backend. In the frontend, I worked on integrating the model into the UI and building out the pages for the farmer persona, setting up the routing and making use of Streamlit's functionalities to deliver the features and in the backend, I created the database to store the information needed to support the prediction model.
+
 ## Want to learn more about our development process? Check out our [Blog!](https://lauryngong.github.io/Belgium-Politics/).
