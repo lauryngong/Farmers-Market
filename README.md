@@ -164,6 +164,9 @@ Most of my work was centered around the database and the researcher persona. I w
 For the researcher persona I spent a lot of time developing their user stories and uses for this application, especially as our ML models began to shift from their original ideas. The feedback from my professors and team members helped me a lot through this process, and through this I was able to base this persona around lots of data visualization. I also worked on a good portion of the pages for this persona, including the map, data export, and some other pages that were deleted or replaced later on into our development process.
 
 ### Nicole Stekol
+Throughout the project, my primary technical contribution was building the crop price linear regression model. I fit many iterations of the model and did extensive feature engineering, ultimately landing on a model incorporating mean annual temperature, total annual precipitation, a quadratic precipitation term, and two lag price features to capture time series behaviour. I sourced and cleaned Eurostat crop price data across 25 EU member states, and stored the final model coefficients and scaler parameters in the database for use at prediction time without retraining.
+
+On the frontend, I connected the prediction model to the policymaker pages, implemented the community discussion board for all three personas with role-based filtering and reply threads, added address-based farm location input using the geopy library, and built the researcher Explore Trends and Compare pages. I also worked on overall UI improvements including the green theme, redesigned home page, and About page.
 
 ### Minju Sung
 
