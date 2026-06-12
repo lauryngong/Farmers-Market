@@ -48,6 +48,37 @@ def load_growing_data(farm_id):
         return []
 
 
+def geocode_address(address, country):
+    """Geocode an address, progressively dropping the most specific parts of
+    the address (e.g. house numbers / street detail) until Nominatim matches.
+
+    Nominatim frequently fails on a fully-specified address but succeeds once
+    the leading, most-specific component is removed. Returns a geopy Location
+    or None if nothing matched.
+    """
+    geolocator = Nominatim(user_agent="farmcast")
+
+    # Build a list of candidate queries, from most to least specific.
+    parts = [p.strip() for p in address.split(",") if p.strip()]
+    candidates = []
+    for i in range(len(parts)):
+        # drop the first i (most specific) components
+        remaining = parts[i:]
+        if remaining:
+            candidates.append(f"{', '.join(remaining)}, {country}")
+    # final fallback: country only
+    candidates.append(country)
+
+    for query in candidates:
+        try:
+            location = geolocator.geocode(query, timeout=10)
+        except Exception:
+            location = None
+        if location is not None:
+            return location
+    return None
+
+
 # ── dialogs ──────────────────────────────────────────────────────────────────
 
 @st.dialog("Add a new farm")
@@ -68,10 +99,10 @@ def dialog_add_farm(user_id):
         index=0
     )
 
-    with st.spinner("Finding your location..."):
-            try:
-                geolocator = Nominatim(user_agent="farmcast")
-                location = geolocator.geocode(f"{address}, {country}")
+    lat = lon = None
+    if address.strip():
+        with st.spinner("Finding your location..."):
+                location = geocode_address(address.strip(), country)
 
                 if location is None:
                     st.error("Could not find that address. Try being less specific — include street and town.")
@@ -81,8 +112,6 @@ def dialog_add_farm(user_id):
 
                     st.success(f"Found: {location.address}")
                     st.map({"lat": [lat], "lon": [lon]})
-            except Exception as e:
-                    st.error(f"Error: {e}")
 
     col1, col2 = st.columns(2)
     with col1:
@@ -93,7 +122,10 @@ def dialog_add_farm(user_id):
             if not address.strip():
                 st.warning("Address is required.")
                 return
-            
+            if lat is None or lon is None:
+                st.warning("Couldn't locate that address. Please adjust it and try again.")
+                return
+
             payload = {
                 "farm_name":  farm_name.strip(),
                 "user_id":    user_id,
@@ -124,7 +156,7 @@ def dialog_edit_farm(farm):
                                 'Cyprus', 'Czechia', 'Denmark', 'Estonia',
                                 'Finland', 'France', 'Germany', 'Greece', 'Hungary',
                                 'Ireland', 'Italy', 'Latvia', 'Lithuania',
-                                'Luxembourg', 'Matla', 'Netherlands', 'Poland',
+                                'Luxembourg', 'Malta', 'Netherlands', 'Poland',
                                 'Portugal', 'Romania', 'Slovakia', 'Slovenia',
                                 'Spain', 'Sweden'], index=['Austria', 'Belgium', 'Bulgaria', 'Croatia',
                                 'Cyprus', 'Czechia', 'Denmark', 'Estonia',
@@ -149,8 +181,7 @@ def dialog_edit_farm(farm):
             else:
                 with st.spinner("Finding your location..."):
                     try:
-                        geolocator = Nominatim(user_agent="farmcast")
-                        location = geolocator.geocode(f"{address}, {country}")
+                        location = geocode_address(address.strip(), country)
 
                         if location is None:
                             st.error("Could not find that address. Try being less specific — try just street and city.")
