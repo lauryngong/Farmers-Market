@@ -114,8 +114,8 @@ def update_farm(farm_id):
         cur = conn.cursor()
         cur.execute("""
             UPDATE farms
-            SET farm_name = %s, longitude =s%, latitude = s%, 
-            country = s%, updated_by = %s
+            SET farm_name = %s, longitude = %s, latitude = %s,
+            country = %s, updated_by = %s
             WHERE farm_id = %s
         """, (data["farm_name"], data["longitude"], data["latitude"], data["country"], data["updated_by"], farm_id))
         conn.commit()
